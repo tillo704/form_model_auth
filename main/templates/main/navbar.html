@@ -1,0 +1,118 @@
+<nav class="navbar bg-danger fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Atagullaev Khikmatulla</a>      
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header bg-primary">
+          <h5 class="offcanvas-title " id="offcanvasNavbarLabel">NavBar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body bg-danger">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'product' %}">Product</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'orderlist' %}">Order List</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'tasks-list' %}">Tasks List</a>
+            </li>
+            <li class="nav-item">  
+              
+              
+
+              
+              
+              {% if cats  %}
+              <li class="nav-item dropdown">
+                
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Category
+                  </a>
+                  <ul class="dropdown-menu">
+                    {% for cat in cats %}
+                    <li><a class="dropdown-item" href="{% url 'cat_detail' cat.slug %}">{{cat.title}}</a></li>
+                    {% endfor %}
+                  
+                  </ul>
+              </li>
+
+              {% endif %}
+
+            
+
+
+
+
+
+
+
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sign Up
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'sign_up'%}">Login</a></li>
+                <li><a class="dropdown-item" href="{% url 'register'%}">Register</a></li>
+                <li><a class="dropdown-item" href="{% url 'registration'%}">Registations_student</a></li>
+                <li><a class="dropdown-item" href="http://127.0.0.1:8000/admin/">Admin</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+               
+              </ul>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Auth
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'logout_user'%}">Log Out</a></li>
+                <li><a class="dropdown-item disabled">{{ request.user}}</a></li>
+                
+                <li>
+                  <hr class="dropdown-divider">
+
+            {% else%}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Auth
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'login_user' %}" >Login</a></li>
+                <li><a class="dropdown-item" href="{% url 'register'%}">Register</a></li>
+                
+                <li>
+                  <hr class="dropdown-divider">
+            {% endif %}
+              </ul>
+            </li>
+           
+
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Add
+              </a>
+              <ul class="dropdown-menu">
+                
+                <li>
+                  <a class="dropdown-item" href="{% url 'add_order' %}">Add Order</a>
+                  <a class="dropdown-item" href="{% url 'add_user' %}">Add User</a>
+                  <a class="dropdown-item" href="{% url 'add_product' %}">Add Product</a>
+                  <a class="dropdown-item" href="{% url 'add_student' %}">Add Student</a>
+                </li>          
+             
+
+
+
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>

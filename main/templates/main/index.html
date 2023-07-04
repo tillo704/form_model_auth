@@ -1,0 +1,51 @@
+{% extends 'main/base.html'%}
+
+
+{% block title %} Index Page {% endblock title %}
+
+{% block content %}
+
+<div class="contenier my-5">
+  <div class="row">
+    <h1 class="text-center text-danger">Users List</h1>
+    <div class="col-md-10 offset-1">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User_id</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">About</th>
+            <th scope="col">is_married</th>
+            <th scope="col">birthday</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <th scope="row">{{ user.id }}</th>
+              <td>{{ user.user_id }}</td>
+              <td>{{ user.first_name }}</td>
+              <td>{{ user.last_name }}<td>
+              <td>@{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.about }}</td>
+              <td>{{ user.is_married }}</td>
+              <td>{{ user.birthday }}</td>
+              <td><a href="{% url 'update_user' user.id %}" class="btn btn-success ">Edit</a><a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Delete</a></td>
+            </tr>
+          {% endfor%}
+
+        </tbody>
+      </table>
+    </div>
+
+    <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Django_Docker.jpg" alt="Rasm bor adi">
+  </div>
+</div>
+
+{% endblock content %}

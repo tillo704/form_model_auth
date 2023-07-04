@@ -1,0 +1,44 @@
+{% extends 'main/base.html'%}
+
+
+{% block title %} Order List Page {% endblock title %}
+
+{% block content %}
+
+<div class="contenier my-5">
+    <div class="row">
+      <h1 class="text-center text-danger">Order List</h1>
+      <div class="col-md-8 offset-2">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              
+              <th scope="col">Customer</th>
+              <th scope="col">Total price</th>
+              <th scope="col">Products</th>
+            
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}            
+              <tr>
+                <th scope="row">{{ order.id }}</th>                
+                <td>{{ order.customer }}</td>
+                <td>{{ order.total_price }}<td>
+                <td>{{ order.products }}</td>              
+                <td><a href="{% url 'update_user' user.id %}" class="btn btn-success ">Edit</a><a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Delete</a></td>
+              </tr>
+            {% endfor%}  
+               
+          </tbody>
+        </table>
+      </div> 
+    
+    </div>
+  </div>       
+
+
+
+
+{% endblock content %}
